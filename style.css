@@ -1,0 +1,94 @@
+
+body {
+  font-family: Montserrat, Helvetica, sans-serif;
+  margin: 0;
+}
+
+nav{
+    background: teal;
+   /* position: fixed;*/
+    width: 100%;
+    height: 50px;
+    background-color: #555;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.navbar a {
+    float: left;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  
+.icon{
+    background-image: url("logo.png");
+
+    width: 40px ;
+    height: 40px;
+    border-radius: 15px;
+}
+
+.iconSide{
+    width: 60px;
+    height: 60px;
+}
+
+.iconSide a{
+    width: 60px;
+    height: 60px;
+}
+ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .link{
+    width: 70%;
+
+  }
+
+  
+  .link ul {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    list-style-type: none;
+  }
+/*------------------Menu --------------*/
+/*------------------Home --------------*/
+  
+  .welcome{
+ 
+    width: 100%;
+    height: 700px;
+    margin: 0;
+    padding: 0;
+    background: url("bienvenue.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .contentBienvenu{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 30px;
+    color: white;
+    transform: translateZ(-200px); 
+  }
+
+  
