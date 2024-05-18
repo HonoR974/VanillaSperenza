@@ -29,14 +29,22 @@ function showContentIn3Sec() {
   }
 }
 
-// iconSide.addEventListener("click", () => {
-//   console.log("test");
-// });
+//--------------------------------------  Carousel ------------------------------ // 
 
-//
-// setTimeout(() => {
-//     iconSide.style.opacity = "1";
-//     link.style.visibility = "visible";
-//     console.log("timing");
-//   }, 3000 );
 
+const slidesContainer = document.getElementById("slides-container");
+const slide = document.querySelector(".slide");
+const prevButton = document.getElementById("slide-arrow-prev");
+const nextButton = document.getElementById("slide-arrow-next");
+
+//btn droit 
+nextButton.addEventListener("click", () => {
+  const slideWidth = slide.clientWidth;
+    slidesContainer.scrollLeft += slideWidth;
+});
+
+//btn gauche 
+prevButton.addEventListener("click", () => {
+  const slideWidth = slide.clientWidth;
+  slidesContainer.scrollLeft -= slideWidth;
+});
