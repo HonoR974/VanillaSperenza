@@ -7,6 +7,7 @@
   src: url(./assets/fonts/DMSerifDisplay-Regular.ttf);
 }
 
+/*background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);*/
 
 body {
   font-family: Montserrat, Helvetica, sans-serif;
@@ -112,7 +113,7 @@ ul {
   flex-direction: column;
   justify-content: space-around;
   font-size: 30px;
-  color: white;
+ /* color: black;*/
   transform: translateZ(-200px);
   font-family: 'Oswald', sans-serif;
   width: 70%;
