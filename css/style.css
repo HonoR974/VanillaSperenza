@@ -1,13 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
 
-
-@font-face {
-  font-family: "DMSerif";
-  src: url(./assets/fonts/DMSerifDisplay-Regular.ttf);
-}
-
-/*background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);*/
 
 body {
   font-family: Montserrat, Helvetica, sans-serif;
@@ -43,8 +34,6 @@ nav * {
 
 
 .icon {
-  background-image: url("logo.png");
-
   width: 40px;
   height: 40px;
   border-radius: 15px;
@@ -52,7 +41,6 @@ nav * {
 
 .iconSide {
   width: 60px;
-  /* opacity: 0;*/
 }
 
 .iconSide a {
@@ -72,7 +60,7 @@ ul {
 
 .link {
   width: 60%;
-
+  font-family:DMSerif ;
   font-size: 0px;
 }
 
@@ -92,7 +80,7 @@ ul {
 }
 
 /*------------------Menu --------------*/
-/*------------------Home --------------*/
+/*------------------Home Welcome image  --------------*/
 
 .welcome {
 
@@ -100,7 +88,7 @@ ul {
   height: 700px;
   margin: 0;
   padding: 0;
-  background: url(img/bienvenue.jpg) center/cover;
+  background: url(../assets/img/bienvenue.jpg) center/cover;
 
   display: flex;
   justify-content: center;
@@ -136,50 +124,29 @@ ul {
 
 
 /*------------------Home Carousel --------------*/
+.titleCarousel {
+  text-align: center; 
+  height: 200px;
+  background-color: rgb(214, 204, 194);
+  font-size: 50px;
+  align-content: center;
+  font-family: DMSerif ;
+  font-weight: bold;
+  text-decoration: underline;
+}
 
 .contentCarousel {
-  height: 50vh;
   background: red;
   display: flex;
   flex-direction: column;
+  background-color: rgb(245, 235, 224);
+  text-align: center; 
+  height: 500px
 }
 
-.carousel {
-  height: 50%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  background: white;
-
-}
-
-.carteContent {
-  height: 90%;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  background: rgb(229 186 149 / 89%);
-  margin: 5px;
-  padding: 10px 0px 10px 0px;
-  border-radius: 15px;
-}
-
-
-
-.carte {
-
-  background: rebeccapurple;
-  display: flex;
-  flex-direction: column;
-}
-
-.carte img {
-  height: 129px;
-  width: 100%;
-}
-
-.infoCarte {
-  text-align: center;
+#cardCarousel{
+  height: 150px;
+  width: 350px;
 }
 
 /*----------------- Carousel -------------*/
