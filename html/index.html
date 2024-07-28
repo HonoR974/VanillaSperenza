@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <!--Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Accueil</title>
+
+    <script src="../js/home.js" async></script>
 </head>
 
 <body>
@@ -64,8 +63,14 @@
     </div>
 
     <!-- Carousel -->
-    <div class="contentCarousel" >
-        <div id="cardCarousel"></div>
+    <div class="carousel-container">
+        <button class="prev">◀</button>
+        <div class="carousel-wrapper">
+            <div id="carousel">
+                
+            </div>
+        </div>
+        <button class="next">▶</button>
     </div>
 
     <!-- Btn En voirs plus qui envois à la page product -->
@@ -122,10 +127,7 @@
     </footer>
 
 
-
-
-
-    <script src="../js/home.js"></script>
+   
 </body>
 
 </html>

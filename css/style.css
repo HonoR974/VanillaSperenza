@@ -135,83 +135,42 @@ ul {
   text-decoration: underline;
 }
 
-.contentCarousel {
-  background: red;
+/* styles.css */
+.carousel-container {
   display: flex;
-  flex-direction: column;
-  background-color: rgb(245, 235, 224);
-  text-align: center; 
-  height: 500px
-}
-
-#cardCarousel{
-  height: 150px;
-  width: 350px;
-}
-
-/*----------------- Carousel -------------*/
-.slider-wrapper {
-  margin: 1rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.slides-container {
-  height: calc(100vh - 2rem);
+  align-items: center;
   width: 100%;
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow: scroll;
-  /*scroll-behavior: smooth;*/
-  scrollbar-width: none;
-}
-
-.slide {
-  width: 100%;
-  height: 100%;
-  flex: 1 0 100%;
-}
-
-.slide-arrow {
-  position: absolute;
-  display: flex;
-  top: 0;
-  bottom: 0;
+  max-width: 1000px; /* Set a max width for the carousel */
   margin: auto;
-  height: 4rem;
-  background-color: white;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+#ligne {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  flex: 0 0 12.5%; /* 100% / 8 items visible at a time = 12.5% each */
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  background: #ccc;
+  margin: 5px;
+}
+
+button.prev, button.next {
+  background: #000;
+  color: #fff;
   border: none;
-  width: 2rem;
-  font-size: 3rem;
-  padding: 0;
+  padding: 10px;
   cursor: pointer;
-  opacity: 0.5;
-  transition: opacity 100ms;
 }
 
-.slide-arrow:hover,
-.slide-arrow:focus {
-  opacity: 1;
-}
-
-#slide-arrow-prev {
-  left: 0;
-  padding-left: 0.25rem;
-  border-radius: 0 2rem 2rem 0;
-}
-
-
-#slide-arrow-next {
-  right: 0;
-  padding-left: 0.75rem;
-  border-radius: 2rem 0 0 2rem;
-}
-
-
-
-img{
-  height: 200px;
-  width: 200px;
+button.prev:hover, button.next:hover {
+  background: #555;
 }

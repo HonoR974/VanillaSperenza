@@ -23,29 +23,42 @@ function showMenuIn3Sec() {
 
 /* -------------- Carousel begin  -------------------*/
 
+//Apparition des elements pour le carousel 
 carousel();
 function carousel() {
-  let product = {
-    id : Number, 
-    name: String
-  }
-  let products = [];
- 
 
   fetch(BASE_URL+"/api/product/all")
   .then((res) => res.json())
   .then(res =>{
-    const cardCarouselDiv = document.getElementById('cardCarousel');
-    cardCarouselDiv.innerHTML = ''; 
+    const cardCarouselDiv = document.getElementById('carousel');
 
+    let i =0; 
     res.forEach(product => {
+      i++;
+  
       const productDiv = document.createElement('div');
-      productDiv.innerText = `Name : ${product.name}`;
+   
+      productDiv.classList.add('carousel-item');
+ 
+      //Ajout du nom du produit 
+      const nomProduct = document.createElement('h2');
+      nomProduct.textContent = `Name : ${product.name}`;
+      productDiv.appendChild(nomProduct);
+
+      //Ajout du prix 
+     
+      const prixProduct = document.createElement('p');
+      prixProduct.textContent = `prix : ${product.prix}`;
+      nomProduct.appendChild(prixProduct);
+
+      const iterateNumber = document.createElement('p');
+      iterateNumber.textContent = `tour : ${i}`;
+      nomProduct.appendChild(iterateNumber);
+
       cardCarouselDiv.appendChild(productDiv);
     });
   });
-
-  
 }
+
 
 /* -------------- Carousel end  -------------------*/
