@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/home.css">
     <title>Accueil</title>
+    <!-- Link Swiper JS CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <script src="../js/home.js" async></script>
+   
 </head>
 
 <body>
@@ -63,15 +65,24 @@
     </div>
 
     <!-- Carousel -->
-    <div class="carousel-container">
-        <button class="prev">◀</button>
-        <div class="carousel-wrapper">
-            <div id="carousel">
-                
+     <div id="cadreCarousel">
+        <div class="container swiper">
+            <div class="slider-wrapper">
+                <div class="card-list swiper-wrapper ">
+                    
+                </div>
+    
+                   <!-- If we need pagination 
+                   <div class="swiper-pagination"></div>
+                    -->
+                   <!-- If we need navigation buttons -->
+                   <div class="swiper-slide-button swiper-button-prev"></div>
+                   <div class="swiper-slide-button swiper-button-next"></div>
             </div>
+         
         </div>
-        <button class="next">▶</button>
-    </div>
+     </div>
+   
 
     <!-- Btn En voirs plus qui envois à la page product -->
     <div style="height: 200px; display: flex; align-items: center; justify-content: center;">
@@ -128,6 +139,10 @@
 
 
    
+    <!-- Link SwiperJS script JS-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../js/home.js" async></script>
+
 </body>
 
 </html>
