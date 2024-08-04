@@ -10,7 +10,6 @@ showMenuIn3Sec();
 function showMenuIn3Sec() {
   let index = 0;
   for (let i = 0; i < 7; i++) {
- 
     setTimeout(() => {
       index += 3;
       iconSide.style.fontSize = index + "px";
@@ -23,52 +22,65 @@ function showMenuIn3Sec() {
 
 /* -------------- Carousel begin  -------------------*/
 
-//Apparition des elements pour le carousel 
+//Apparition des elements pour le carousel
 carousel();
 function carousel() {
+  fetch(BASE_URL + "/api/product/all")
+    .then((res) => res.json())
+    .then((res) => {
+      const cardList = document.querySelector(".card-list");
 
-  fetch(BASE_URL+"/api/product/all")
-  .then((res) => res.json())
-  .then(res =>{
-    const cardList =  document.querySelector(".card-list");
+      res.forEach((product) => {
+        const productDiv = document.createElement("div");
 
-    res.forEach(product => {
-  
-      const productDiv = document.createElement('div');
-   
-      //productDiv.classList.add('carousel-item');
-      productDiv.className = "card-item swiper-slide";
+        //productDiv.classList.add('carousel-item');
+        productDiv.className = "card-item swiper-slide";
 
-      //Ajout de l'image 
-      const img = document.createElement('img');
-      img.src = product.pathImage ;
-      img.className = "user-image";
+        //Ajout de l'image
+        const img = document.createElement("img");
+        img.src = product.pathImage;
+        img.className = "user-image";
 
-      productDiv.appendChild(img);
+        productDiv.appendChild(img);
 
-      //ajout du nom 
-      const name = document.createElement('h2');
-      name.className = "user-name";
-      name.textContent = product.name;
-      productDiv.appendChild(name);
+        //ajout du nom
+        const name = document.createElement("h2");
+        name.className = "user-name";
+        name.textContent = product.name;
+        productDiv.appendChild(name);
 
-      //ajout du prix 
-      const prix = document.createElement('p');
-      prix.className = "user-profession";
-      prix.textContent = product.prix + "€";
-      productDiv.appendChild(prix);
+        //ajout du prix
+        const prix = document.createElement("p");
+        prix.className = "user-profession";
+        prix.textContent = product.prix + "€";
+        productDiv.appendChild(prix);
 
-      //ajout du bouton 
-      const button = document.createElement('button');
-      button.className = "message-button";
-      button.textContent = "Voir";
-      productDiv.appendChild(button);
+        //ajout du bouton
+        const button = document.createElement("button");
+        button.className = "message-button";
+        button.textContent = "Voir " + " id : " + product.id;
 
-      cardList.appendChild(productDiv);
+        // Assigner une méthode au bouton
+        button.onclick = function () {
+          // Envoyer une requête à l'API Spring Boot
+          fetch(BASE_URL +  `/api/product/${encodeURIComponent(product.id)}`)
+            .then((response) => response.json())
+            .then((data) => {
+              // Stocker les données dans le local storage
+              localStorage.setItem("productInfo", JSON.stringify(data));
+
+              // Rediriger vers la nouvelle page
+              window.location.href = "productDetail.html";
+            })
+            .catch((error) => console.error("Erreur:", error));
+        };
+
+        productDiv.appendChild(button);
+
+        cardList.appendChild(productDiv);
+      });
     });
-  });
 }
-
 
 const swiper = new Swiper(".slider-wrapper", {
   loop: true,
@@ -80,7 +92,6 @@ const swiper = new Swiper(".slider-wrapper", {
     el: ".swiper-pagination",
     clickable: true,
     dynamicBullets: true,
-    
   },
 
   // Navigation arrows
@@ -102,21 +113,5 @@ const swiper = new Swiper(".slider-wrapper", {
     },
   },
 });
-
-/**
- *  const nomProduct = document.createElement('h2');
-      nomProduct.textContent = `Name : ${product.name}`;
-      productDiv.appendChild(nomProduct);
-
-      //Ajout du prix 
-     
-      const prixProduct = document.createElement('p');
-      prixProduct.textContent = `prix : ${product.prix}`;
-      nomProduct.appendChild(prixProduct);
-
-      const iterateNumber = document.createElement('p');
-      iterateNumber.textContent = `tour : ${i}`;
-      nomProduct.appendChild(iterateNumber);
- */
 
 /* -------------- Carousel end  -------------------*/
