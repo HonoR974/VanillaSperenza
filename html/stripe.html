@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+    <h1>Stripe test </h1>
+
+
+    <button id="checkout-button">Payer</button>
+
+    <script>
+        
+        const BASE_URL = "http://localhost:8080";
+        const stripe = Stripe('pk_test_51MUWSJAuJzjqYWzf2mdG26Me4DgROAqkcBbdBG3BfCLRp1piAc2BF71URsaRZeaabbadrY3Edf6hfDnbwVPpT44x00JAcD3xL6');  
+
+        document.getElementById('checkout-button').addEventListener('click', () => {
+            fetch(BASE_URL+'/create-checkout-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    productName: 'Exemple de Produit',
+                    amount: 2000,  // Montant en centimes, 2000 = $20.00
+                    quantity: 1
+                }),
+            })
+                .then(response => response.text())
+                .then(sessionUrl => {
+                    window.location.href = sessionUrl;  // Redirige vers la page de paiement
+                })
+                .catch(error => console.error('Erreur:', error));
+        });
+    </script>
+
+</body>
+
+</html>
+
+</body>
+
+</html>
