@@ -39,26 +39,26 @@ function carousel() {
         //Ajout de l'image
         const img = document.createElement("img");
         img.src = product.pathImage;
-        img.className = "user-image";
+        img.className = "product-image";
 
         productDiv.appendChild(img);
 
         //ajout du nom
         const name = document.createElement("h2");
-        name.className = "user-name";
+        name.className = "product-name";
         name.textContent = product.name;
         productDiv.appendChild(name);
 
         //ajout du prix
         const prix = document.createElement("p");
-        prix.className = "user-profession";
+        prix.className = "product-prix";
         prix.textContent = product.prix + "€";
         productDiv.appendChild(prix);
 
         //ajout du bouton
         const button = document.createElement("button");
         button.className = "message-button";
-        button.textContent = "Voir " + " id : " + product.id;
+        button.textContent = "Voir "; 
 
         // Assigner une méthode au bouton
         button.onclick = function () {

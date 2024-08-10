@@ -165,7 +165,7 @@ ul {
   border: 2px solid rgba(213, 189, 175,1);
 }
 
-.card-list .card-item .user-image {
+.card-list .card-item .product-image {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -174,11 +174,12 @@ ul {
   padding: 4px;
 }
 
-.card-list .card-item .user-profession {
-  font-size: 1.15rem;
-  color: #e3e3e3;
+.card-list .card-item .product-prix {
+  font-size: 25px;
+  color: #fffdfd;
   font-weight: 500;
-  margin:14px 0 40px;
+  margin: 14px 0 40px;
+  text-decoration: underline;
 }
 
 .card-list .card-item .message-button {
