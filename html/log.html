@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/log.css">
+    <title>Connexion</title>
+</head>
+
+<body>
+
+
+    <div class="iconSide">
+        <a href="index.html">
+            <img class="icon" src="../assets/icon/back.png" alt="back icon">
+            <p>Retour à l'accueil </p>
+        </a>
+    </div>
+
+
+
+    <div class="signinSide">
+        <div class="signinCard">
+            <div class="imgSignin">
+                <img src="../assets/icon/userLogin.png" alt="User Login Icon">
+            </div>
+
+            <div id="signin">
+                <div class="formulaireSignin">
+                    <h1>Connexion </h1>
+                    <form id="loginForm">
+                        <label for="name">Pseudo:</label><br>
+                        <input type="text" id="username" name="username" required><br><br>
+    
+                        <label for="password">Mot de passe:</label><br>
+                        <input type="password" id="password" name="password" required><br><br>
+    
+                        <button class="btnLogin" type="submit">Se connecter</button>
+                    </form>
+                    <div>
+                        <button onclick="show()">Voulez vous inscrire ? </button>
+                        <button onclick="test()">test</button>
+                    </div>
+                </div>
+            </div>
+         
+
+            <div id="registerSide">
+                <div class="formulaireSignin">
+                    <h1>Inscription </h1>
+                    <form id="registerForm">
+                        <label for="name">Pseudo:</label><br>
+                        <input type="text" id="usernameRegister" name="username" required><br><br>
+    
+                        <label for="name">Email:</label><br>
+                        <input type="text" id="emailRegister" name="email" required><br><br>
+    
+
+                        <label for="password">Mot de passe:</label><br>
+                        <input type="password" id="passwordRegister" name="password" required><br><br>
+    
+                        <button class="btnLogin" type="submit">S'inscrire</button>
+                    </form>
+                    <div>
+                        <button onclick="show()">Voulez vous vous connectez ? </button>
+                        <button onclick="test()">test</button>
+                    </div>
+                    
+                </div>
+            </div>
+
+           
+        </div>
+    </div>
+
+
+  
+
+
+    <script src="../js/log.js"></script>
+
+</body>
+
+</html>

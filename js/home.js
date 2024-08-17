@@ -23,13 +23,22 @@ function showMenuIn3Sec() {
 /* -------------- Carousel begin  -------------------*/
 
 //Apparition des elements pour le carousel
+
+const myHeaders = new Headers();
+const get = {
+  method :"GET", 
+  headers: {
+    "Content-Type": "application/json",
+  },
+  mode: "cors"
+};
+
 carousel();
 function carousel() {
-  fetch(BASE_URL + "/api/product/all")
+  fetch(BASE_URL + "/api/product/carousel", get)
     .then((res) => res.json())
     .then((res) => {
       const cardList = document.querySelector(".card-list");
-
       res.forEach((product) => {
         const productDiv = document.createElement("div");
 
