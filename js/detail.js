@@ -1,5 +1,6 @@
 const BASE_URL = "http://localhost:8080";
 
+//affiche les informations du product demandé 
 document.addEventListener("DOMContentLoaded", function () {
   // Récupérer les données du local storage
   var productInfo = localStorage.getItem("productInfo");
@@ -56,3 +57,5 @@ function showMenuIn3Sec() {
 }
 
 /* -------------- Menu  End -------------------*/
+
+
