@@ -1,58 +1,53 @@
 const BASE_URL = "http://localhost:8080";
 
-/* -------------- Carousel begin  -------------------*/
-
-//Apparition des elements pour le carousel
-
-const myHeaders = new Headers();
 const get = {
-  method :"GET", 
+  method: "GET",
   headers: {
     "Content-Type": "application/json",
   },
-  mode: "cors"
+  mode: "cors",
 };
 
-carousel();
-function carousel() {
-  fetch(BASE_URL + "/api/product/carousel", get)
+
+document.addEventListener("DOMContentLoaded", function () {
+  fetch(BASE_URL + "/api/product/all", get)
     .then((res) => res.json())
-    .then((res) => {
+    .then((data) => {
       const cardList = document.querySelector(".card-list");
-      res.forEach((product) => {
+      data.forEach((product) => {
         const productDiv = document.createElement("div");
+        productDiv.className = "card-item";
 
-        //productDiv.classList.add('carousel-item');
-        productDiv.className = "card-item swiper-slide";
-
-        //Ajout de l'image
+        // pathImage
         const img = document.createElement("img");
         img.src = product.pathImage;
         img.className = "product-image";
-
         productDiv.appendChild(img);
 
-        //ajout du nom
+        //name
         const name = document.createElement("h2");
         name.className = "product-name";
         name.textContent = product.name;
         productDiv.appendChild(name);
 
-        //ajout du prix
+        //prix
         const prix = document.createElement("p");
         prix.className = "product-prix";
         prix.textContent = product.prix + "€";
         productDiv.appendChild(prix);
 
+        //quantite
+
+        //id avec bouton
         //ajout du bouton
         const button = document.createElement("button");
         button.className = "message-button";
-        button.textContent = "Voir "; 
+        button.textContent = "Voir ";
 
         // Assigner une méthode au bouton
         button.onclick = function () {
           // Envoyer une requête à l'API Spring Boot
-          fetch(BASE_URL +  `/api/product/${encodeURIComponent(product.id)}`)
+          fetch(BASE_URL + `/api/product/${encodeURIComponent(product.id)}`)
             .then((response) => response.json())
             .then((data) => {
               // Stocker les données dans le local storage
@@ -69,40 +64,6 @@ function carousel() {
         cardList.appendChild(productDiv);
       });
     });
-}
-
-const swiper = new Swiper(".slider-wrapper", {
-  loop: true,
-  grabCursor: true,
-  spaceBetween: 30,
-
-  // If we need pagination
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-    dynamicBullets: true,
-  },
-
-  // Navigation arrows
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-
-  //Responseive BreakPoints
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 5,
-    },
-  },
 });
-
-/* -------------- Carousel end  -------------------*/
 
 
