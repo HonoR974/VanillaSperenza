@@ -1,3 +1,5 @@
+
+
 const iconSide = document.querySelector(".iconSide");
 const link = document.querySelector(".link");
 
@@ -12,15 +14,4 @@ function showMenuIn3Sec() {
       link.style.fontSize = index + "px";
     }, 2000);
   }
-}
-
-//------------------- Product list
-
-
-
-//retourne les produits pour la liste
-function getProductList() {
-
-
-    window.location.href = "productList.html";
 }

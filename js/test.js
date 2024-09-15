@@ -1,21 +1,51 @@
-// Sélectionner le bouton et l'élément à cacher/montrer
-const toggleButton = document.getElementById('toggleButton');
-const myElement = document.getElementById('myElement');
-myElement.style.display = 'none';
+let linkMenu = new Map();
+linkMenu.set("Accueil", "index.html");
+linkMenu.set("Produits", "productList.html");
+linkMenu.set("Logs", "log.html");
 
+const iconPath = "../assets/icon/logo.png";
 
-// Ajouter un écouteur d'événements pour le clic sur le bouton
-toggleButton.addEventListener('click', function() {
-    // Vérifier si l'élément est actuellement caché
-    if (myElement.style.display === 'none') {
-        // Si l'élément est caché, on le montre
-        myElement.style.display = 'block';
-        // Changer le texte du bouton
-        toggleButton.textContent = 'Cacher l\'élément';
-    } else {
-        // Si l'élément est montré, on le cache
-        myElement.style.display = 'none';
-        // Changer le texte du bouton
-        toggleButton.textContent = 'Afficher l\'élément';
-    }
+document.addEventListener("DOMContentLoaded", function () {
+
+/**
+ * 
+ * for (let [key, value] of map) {
+    console.log(key, value);
+}
+ */
+
+  const header = document.getElementsByTagName("header");
+
+  const iconSide = document.createElement("div");
+  iconSide.className = "icon-side";
+
+  const aSide = document.createElement("a");
+  aSide.href = "index.html";
+
+  const icon = document.createElement("img");
+  icon.className = "icon";
+  icon.src = "../assets/icon/logo.png";
+
+  aSide.appendChild(icon);
+  iconSide.appendChild(aSide);
+  header.appendChild(iconSide);
+  
 });
+
+
+
+const iconSide = document.querySelector(".iconSide");
+const link = document.querySelector(".link");
+
+showMenuIn3Sec();
+
+function showMenuIn3Sec() {
+  let index = 0;
+  for (let i = 0; i < 7; i++) {
+    setTimeout(() => {
+      index += 3;
+      iconSide.style.fontSize = index + "px";
+      link.style.fontSize = index + "px";
+    }, 2000);
+  }
+}

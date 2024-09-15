@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080";
+
 
 //affiche les informations du product demandé 
 document.addEventListener("DOMContentLoaded", function () {
@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (productInfo) {
     var productData = JSON.parse(productInfo);
-    console.log("product data " + productData);
     // Afficher les informations
    
    //title 
