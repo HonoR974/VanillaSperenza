@@ -10,11 +10,18 @@ const get = {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  //lsit oid des produits qui seront stocker 
+  let arrayOid = []; 
+
   fetch(BASE_URL + "/api/product/all", get)
     .then((res) => res.json())
     .then((data) => {
+  
       const cardList = document.querySelector(".card-list");
       data.forEach((product) => {
+
+        arrayOid.push(product.id);
+
         const productDiv = document.createElement("div");
         productDiv.className = "card-item";
 
@@ -63,7 +70,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         cardList.appendChild(productDiv);
       });
+
+      localStorage.setItem("listOidProduct", arrayOid); 
     });
+
+   
 });
 
 

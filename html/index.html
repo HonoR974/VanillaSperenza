@@ -1,150 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/home.css">
-    <title>Accueil</title>
-    <!-- Link Swiper JS CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/home.css">
+        <link rel="stylesheet" href="../css/menu.css">
+        <title>Accueil</title>
+        <!-- Link Swiper JS CSS-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-   
-</head>
 
-<body>
+    </head>
 
-    <!-- Menu -->
-    <header>
-        <nav>
-            <div class="iconSide">
-                <a href="index.html">
-                    <img class="icon" src="../assets/icon/logo.png" alt="logo icon">
-                </a>
-            </div>
-            <div class="link">
-                <ul>
-                    <li> <a href="index.html">Accueil</a></li>
-                    <li><a href="productList.html" >Produits</a></li>
-                </ul>
-            </div>
+    <body>
 
-            <div>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
 
-            <div id="log">
-                <a href="log.html">
-                    <img class="icon" src="../assets/icon/login.png" alt="login icon">
-                </a>
-            </div>
-        </nav>
-    </header>
+        <!-- Conteneur pour le menu -->
+        <div id="menu-container"></div>
 
-    <!-- Bandeau ecriture Home -->
-    <div class="welcome">
-        <div class="contentBienvenu">
-            <div style="color:white; text-shadow: none;">
-                <span>Bienvenue</span>
-            </div>
-
-            <div></div>
-            <p style="color:black">sur le e-shop de typh</p>
-            <p style="color:black">patati patata lalalla </p>
-            <p style="color:black">patati patata lalalla </p>
-        </div>
-
-    </div>
-    </div>
-
-    <!-- Nos nouveautés avant carousel -->
-    <div class="titleCarousel">
-      NOS NOUVEAUX PRODUITS
-    </div>
-
-    <!-- Carousel -->
-     <div id="cadreCarousel">
-        <div class="container swiper">
-            <div class="slider-wrapper">
-                <div class="card-list swiper-wrapper ">
-                    
+        <!-- Bandeau ecriture Home -->
+        <div class="welcome">
+            <div class="contentBienvenu">
+                <div style="color:white; text-shadow: none;">
+                    <span>Bienvenue</span>
                 </div>
-    
-                   <!-- If we need pagination 
-                   <div class="swiper-pagination"></div>
-                    -->
-                   <!-- If we need navigation buttons -->
-                   <div class="swiper-slide-button swiper-button-prev"></div>
-                   <div class="swiper-slide-button swiper-button-next"></div>
+
+                <div></div>
+                <p >Sur le E-shop de Sperenza</p>
+                <p >Vous y trouverez touts les produits confectionné à la main avec amour et pation </p>
+                <p >Entrez dans l'univers Sperenza et decouvrez les produits qui vous ressemble et qui vous correspondent </p>
             </div>
-         
+
         </div>
-     </div>
-   
-
-    <!-- Btn En voirs plus qui envois à la page product -->
-    <div style="height: 200px; display: flex; align-items: center; justify-content: center;">
-        <button style="border-radius: 15px; height: 50px;width: 100px;">
-            En voir plus
-        </button>
-    </div>
-
-    <!-- Presentation de la marque Sperenza -->
-    <div style="text-align: center; height: 400px; background-color: aquamarine;">
-        <div>
-            <h1>La Marque Sperenza </h1>
         </div>
 
-        <div>
-            Integer fringilla consectetur erat eu commodo. Morbi sed hendrerit orci, quis iaculis ex. Integer congue
-            odio et condimentum suscipit. Sed lobortis eget felis vitae imperdiet. Nunc rutrum ipsum nec hendrerit
-            auctor. Pellentesque vitae nunc viverra, imperdiet tortor eu, gravida orci. Aliquam mollis elementum mi, et
-            ornare dui feugiat vel. Aenean id ligula massa.
+        <!-- Nos nouveautés avant carousel -->
+        <div class="titleCarousel">
+            NOS NOUVEAUX PRODUITS
         </div>
 
-    </div>
+        <!-- Carousel -->
+        <div id="cadreCarousel">
+            <div class="container swiper">
+                <div class="slider-wrapper">
+                    <div class="card-list swiper-wrapper ">
 
+                    </div>
 
-    <!-- Commentaire -->
-    <div style="height: 300px; text-align: center; display: flex;
-                 flex-direction: column;
-                 align-items: center; 
-                 justify-content: space-around;">
-        <h1>
-            Commentaires
-        </h1>
+                    <!-- If we need pagination 
+                    <div class="swiper-pagination"></div>
+                        -->
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-slide-button swiper-button-prev"></div>
+                    <div class="swiper-slide-button swiper-button-next"></div>
+                </div>
 
-        <!-- Card commentaire -->
-        <div style=" height: 100px; width: 150px; background-color: bisque;">
-            <p>WOW Genial sperenza ! je laisse mon commentaire </p>
+            </div>
         </div>
-    </div>
 
 
-    <!-- Reseau-->
-    <div style="height: 300px; background-color: blueviolet;text-align: center;
-        display: flex; flex-direction: column; justify-content: center; align-content: center;">
-        <h1 style="background-color: blanchedalmond;">Réseaux</h1>
-    </div>
+        <!-- Btn En voirs plus qui envois à la page product -->
+        <div class="cadreVoirPlus">
+            <button class="btnVoirPlus" onclick="productList()">
+                En voir plus
+            </button>
+        </div>
+
+        <!-- Presentation de la marque Sperenza -->
+        <div class="cadreMarque">
+            <div class="titleMarque">
+                <h1>La Marque Sperenza </h1>
+            </div>
+
+            <div class="contentMarque">
+                Integer fringilla consectetur erat eu commodo. Morbi sed hendrerit orci, quis iaculis ex. Integer congue
+                odio et condimentum suscipit. Sed lobortis eget felis vitae imperdiet. Nunc rutrum ipsum nec hendrerit
+                auctor. Pellentesque vitae nunc viverra, imperdiet tortor eu, gravida orci. Aliquam mollis elementum mi, et
+                ornare dui feugiat vel. Aenean id ligula massa.
+            </div>
+
+        </div>
+
+        <!-- Reseau-->
+        <div class="reseau">
+
+            <h1 class="titleReseau">Réseaux</h1>
+        </div>
 
 
-    <!--Footer-->
-    <footer style="height: 200px; background-color: cadetblue; 
-        text-align: center;display: flex; flex-direction: column;
-        justify-content: center;">
-        <h1>Footer</h1>
-    </footer>
+        <!--Footer-->
+        <footer class="footer">
+        </footer>
 
 
-   
-    <!-- Link SwiperJS script JS-->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="../js/home.js" ></script>
-    <script src="../js/menu.js"></script>
 
-</body>
+        <!-- Link SwiperJS script JS-->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="../js/home.js"></script>
+        <script src="../js/menu.js"></script>
+
+    </body>
 
 </html>

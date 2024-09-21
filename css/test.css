@@ -1,0 +1,59 @@
+/* Styles de base */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#panier {
+    position: fixed;
+  
+    z-index: 2;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Styles du bandeau vertical */
+.bandeau {
+    height: 100%;
+    width: 0; /* Initialement caché */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: width 0.5s ease; /* Animation lors de l'ouverture/fermeture */
+    z-index: 1;
+}
+
+.bandeau ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 50px 0;
+}
+
+.bandeau ul li {
+    padding: 8px 16px;
+    text-align: left;
+}
+
+.bandeau ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.bandeau ul li a:hover {
+    background-color: #575757;
+}
+
+/* Classe pour ouvrir le bandeau */
+.bandeau.open {
+    width: 350px; /* Largeur lorsque le bandeau est ouvert */
+}

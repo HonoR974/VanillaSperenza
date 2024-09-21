@@ -18,6 +18,9 @@ function carousel() {
   fetch(BASE_URL + "/api/product/carousel", get)
     .then((res) => res.json())
     .then((res) => {
+      
+      //enregistre les produits carousel 
+
       const cardList = document.querySelector(".card-list");
       res.forEach((product) => {
         const productDiv = document.createElement("div");

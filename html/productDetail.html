@@ -4,46 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/detail.css">
+  <link rel="stylesheet" href="../css/menu.css">
   <title>Document</title>
 </head>
 
 <body>
 
-  <header>
-    <nav>
-      <div class="iconSide">
-        <a href="#">
-          <img class="icon" src="../assets/icon/logo.png" alt="logo icon">
-        </a>
-      </div>
-      <div class="link">
-        <ul>
-          <li> <a href="index.html">Accueil</a></li>
-          <li><a href="categorie.html">Produits</a></li>
-          <li><a href="categorie.html">Chez soi</a></li>
-          <li><a href="categorie.html">Prix mini</a></li>
-          <li><a href="categorie.html">Contact</a></li>
-          <li><a href="categorie.html">More</a></li>
-
-        </ul>
-      </div>
-
-      <div>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-
-    </nav>
-  </header>
+  <!-- Conteneur pour le menu -->
+  <div id="menu-container"></div>
 
   <div id="containerDetail">
     <div id="cadreDetail">
 
       <div id="ligneTop">
-        <div id="btnPreview">
-           <code>&lt;</code> Precedent | Suivant <code>&gt;</code>
+
+        <div id="lignePreview">
+
+          <button class="btnPreview" onclick="getPrecedentProduct()">
+            <code>&lt;</code> Precedent
+          </button>
+          |
+          <button class="btnPreview">
+            Suivant <code>&gt;</code>
+          </button>
+
         </div>
       </div>
 
@@ -51,7 +35,7 @@
       <div id="cadreTitle">
         <div id="titleDetail"></div>
       </div>
-      
+
       <div id="contentDetail">
 
         <div id="contentPhoto">
@@ -72,6 +56,7 @@
 
 
   <script src="../js/detail.js"></script>
+  <script src="../js/menu.js"></script>
 
 </body>
 

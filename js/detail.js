@@ -1,4 +1,5 @@
-
+let oidProduct; 
+const BASE_URL = "http://localhost:8080";
 
 //affiche les informations du product demandé 
 document.addEventListener("DOMContentLoaded", function () {
@@ -9,6 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     var productData = JSON.parse(productInfo);
     // Afficher les informations
    
+    //enregistre l'oid 
+    idProduct = productData.id; 
+    console.log("oid " + idProduct);
+
+
    //title 
    const title = document.getElementById("titleDetail");
    title.innerHTML = productData.name; 
@@ -36,25 +42,57 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-/* -------------- Menu Begin  -------------------*/
-const menu = document.getElementById("menu");
-const iconSide = document.querySelector(".iconSide");
-const link = document.querySelector(".link");
 
-showMenuIn3Sec();
-//changer la rapidité pour les test
-//a redefinir
-function showMenuIn3Sec() {
-  let index = 0;
-  for (let i = 0; i < 6; i++) {
-    setTimeout(() => {
-      index += 3;
-      iconSide.style.fontSize = index + "px";
-      link.style.fontSize = index + "px";
-    }, 1000);
+let arrayId = []; 
+initArray();
+
+/**
+ * Initialise la variable arrayId 
+ */
+function initArray () {
+  
+  arrayid = localStorage.getItem("listOidProduct");
+  if (arrayid.length != 0 ) {
+
+  }else {
+  
+    //va cherche les infos 
+    fetch(BASE_URL + "/api/product/all", get)
+    .then((res) => res.json())
+    .then((data) => {
+      data.forEach((product) => {
+        arrayId.setItem(product.id);
+      });
+    });
+    localStorage.setItem("listOidProduct", arrayid); 
   }
+
 }
 
-/* -------------- Menu  End -------------------*/
+function getPrecedentProduct() {
 
+  let index = arrayId.indexOf(idProduct); 
+  console.log("index" + index); 
+  let size = arrayId.length; 
+  var idTarget; 
 
+  if (index != 0 ) {
+     idTarget = arrayId[index--];
+  } else if ( index ==0) {
+      //si l'index est egale a 0 on prend le dernier de la liste 
+    idTarget = arrayId[size--];
+  }else if (index == size--){
+    idTarget = arrayId[0];
+  }
+
+  fetch(BASE_URL + `/api/product/${encodeURIComponent(idTarget)}`)
+    .then((response) => response.json())
+    .then((data) => {
+      // Stocker les données dans le local storage
+      localStorage.setItem("productInfo", JSON.stringify(data));
+
+      // Rediriger vers la nouvelle page
+      window.location.href = "productDetail.html";
+    });
+
+}
