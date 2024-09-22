@@ -23,18 +23,23 @@
             <div id="signin">
                 <div class="formulaireSignin">
                     <h1>Connexion </h1>
-                    <form id="loginForm">
-                        <label for="name">Pseudo:</label><br>
-                        <input type="text" id="username" name="username" required><br><br>
+                    <form id="loginForm" class="formulaire">
+                        <label for="name">Username :</label><br>
+                        
+                        <input class="inputFormulaire" type="text" 
+                        id="username" name="username" required
+                        placeholder="Username"><br><br>
     
                         <label for="password">Mot de passe:</label><br>
-                        <input type="password" id="password" name="password" required><br><br>
+                        <input class="inputFormulaire" type="password" id="password"
+                         name="password" required
+                         placeholder="Password"><br><br>
     
                         <button class="btnLogin" type="submit">Se connecter</button>
                     </form>
-                    <div>
+                    <div class="space">
                         <button onclick="show()">Voulez vous inscrire ? </button>
-                        <button onclick="test()">test</button>
+                     
                     </div>
                 </div>
             </div>
@@ -43,22 +48,29 @@
             <div id="registerSide">
                 <div class="formulaireSignin">
                     <h1>Inscription </h1>
-                    <form id="registerForm">
-                        <label for="name">Pseudo:</label><br>
-                        <input type="text" id="usernameRegister" name="username" required><br><br>
+                    <form class="formulaire" id="registerForm">
+                        <label for="name">Username :</label><br>
+                        <input class="inputFormulaire" type="text"
+                         id="usernameRegister" name="username"
+                          required
+                          placeholder="Username"><br><br>
     
                         <label for="name">Email:</label><br>
-                        <input type="text" id="emailRegister" name="email" required><br><br>
+                        <input class="inputFormulaire" type="text"
+                         id="emailRegister" name="email"
+                          required
+                          placeholder="Email"><br><br>
     
 
                         <label for="password">Mot de passe:</label><br>
-                        <input type="password" id="passwordRegister" name="password" required><br><br>
+                        <input class="inputFormulaire" type="password" id="passwordRegister" 
+                        name="password" required
+                        placeholder="PassWord"><br><br>
     
                         <button class="btnLogin" type="submit">S'inscrire</button>
                     </form>
                     <div>
                         <button onclick="show()">Voulez vous vous connectez ? </button>
-                        <button onclick="test()">test</button>
                     </div>
                     
                 </div>

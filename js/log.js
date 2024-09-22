@@ -60,7 +60,7 @@ document
 function addCookie(cookie) {
   console.log("jwt " + cookie);
   // Créer un cookie avec le JWT
-  document.cookie = `token=${cookie}; path=/; Secure; SameSite=Strict;`;
+  document.cookie = `token=${cookie}; path=/; Secure;  HttpOnly; SameSite=Strict;`;
 
   // Options supplémentaires (si vous pouvez configurer via le serveur ou autres moyens) :
   // - HttpOnly : Empêche l'accès au cookie via JavaScript (doit être configuré côté serveur)
@@ -83,20 +83,20 @@ function test() {
     console.log("before test " + jwtFromCookie);
 
     fetch(BASE_URL + "/api/product/all",{
-        method: 'GET',  // Peut être 'POST', 'PUT', 'DELETE', etc. selon vos besoins
+        method: 'GET',  
         headers: {
-            'Authorization': `Bearer ${jwtFromCookie}`,  // Inclure le JWT ici
-            'Content-Type': 'application/json',  // Si vous envoyez des données JSON
+            'Authorization': `Bearer ${jwtFromCookie}`,  
+            'Content-Type': 'application/json',  
         }
     }).then(response => {
         if (!response.ok) {
-            // Gérer les erreurs HTTP (4xx, 5xx)
+        
             throw new Error('Network response was not ok');
         }
-        return response.json();  // Traiter la réponse JSON
+        return response.json();  
     })
     .then(data => {
-        console.log('Data:', data);  // Utiliser les données de la réponse
+        console.log('Data:', data); 
     });
 
 }

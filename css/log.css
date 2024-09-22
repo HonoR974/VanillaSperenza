@@ -31,14 +31,61 @@
     width: 300px ;
 }
 
-.formulaireSignin {
-
+.formulaire {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-.registrationForm{
+.inputFormulaire {
+  border-radius: 10px;
+  height: 30px;
+  border: 2px solid white;
+}
 
+.inputFormulaire:hover   {
+  border: 2px solid blue;
+}
+
+.inputFormulaire:focus   {
+  border: 2px solid red;
+}
+
+.space{
+  height: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.space button {
+  height: 40px;
+  font-size: 15px;
+  border: 2px solid white;
+  background: none;
+  border-radius: 10px;
+}
+
+.space button:hover{
+  color: blue;
+  background-color: white;
+  border: 2px solid rgba(202, 240, 248, 1);
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .btnLogin {
+  height: 40px;
+  font-size: 15px;
+  border: 2px solid white;
+  background: none;
+  border-radius: 10px;
+}
 
+.btnLogin:hover {
+  background-color: white;
+  color: red;
+  text-decoration: red underline;
+  cursor: pointer;
 }

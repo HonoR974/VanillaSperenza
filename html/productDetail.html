@@ -46,7 +46,18 @@
         <div id="contentInfo">
           <div id="description">description</div>
           <div id="prix">prix </div>
-          <div id="btnAchat"><a href="stripe.html">Ajouter au panier </a></div>
+          
+          <div class="quantiteSide">
+            <label for="quantity">Choisir la quantité :</label>
+            <input type="number" id="quantity" 
+            name="quantity" min="1" max="100" 
+            step="1" value="1">
+          </div>
+          
+
+          <div id="btnAchat">
+            <a href="stripe.html">Ajouter au panier </a>
+          </div>
         </div>
 
 
