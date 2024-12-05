@@ -172,6 +172,9 @@ body {
 .quantiteSide label, .quantiteSide input{
   padding: 5px;
   background-color: rgba(237, 237, 233, 1);
+  border-radius: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .quantiteSide input{ 

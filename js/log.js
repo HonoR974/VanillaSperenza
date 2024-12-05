@@ -6,19 +6,18 @@ const signinSide = document.getElementById("signin");
 
 registerSide.style.display = "none";
 
-//loggin Or register 
-function show () {
-
-  if (registerSide.style.display=== 'none') {
+//loggin Or register
+function show() {
+  if (registerSide.style.display === "none") {
     registerSide.style.display = "block";
     signinSide.style.display = "none";
-  }else {
-      registerSide.style.display = "none";
+  } else {
+    registerSide.style.display = "none";
     signinSide.style.display = "block";
   }
 }
 
-//------------------------ Connexion Begin 
+//------------------------ Connexion Begin
 
 document
   .getElementById("loginForm")
@@ -27,41 +26,91 @@ document
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    var jwt ;
-
+    var jwt;
+    console.log("appel login"); 
     const userData = {
       username: username,
       password: password,
     };
     const postInit = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-        mode: "cors",
-      };
-   
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+      credentials: "include", // Inclut les cookies dans la requête
+    };
 
-    fetch(BASE_URL + "/api/auth/login", postInit)
-      .then((response) => response.json())
-      .then((response) => {
-        jwt = response.accessToken;
 
-        addCookie(jwt);
-      })
-      .catch((error) => console.error("Erreur:", error));
+    fetch("http://localhost:8080/api/auth/login", postInit)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("data " + data); 
+    });
+    
+  
   });
 
-//------------------------ Connexion End 
+const get = {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  credentials: "include",
+};
 
-//------------------------ jwt 
+function test() {
+  fetch(BASE_URL + "/api/users/me", get)
+    .then((response) => response.json())
+    .then((response) => {
+      console.log("response " + response);
+    })
+    .catch((error) => console.error("Erreur:", error));
+}
+
+function test2() {
+  const getTest = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  };
+  fetch(BASE_URL + "/api/product/all", getTest)
+    .then((response) => response.json())
+    .then((response) => {
+      console.log("response 2 " + response);
+    })
+    .catch((error) => console.error("Erreur:", error));
+}
+
+// Exemple d'utilisation
+
+const fetchProtectedData = async () => {
+  try {
+    const response = await fetch("http://localhost:8080/api/product/all", {
+      method: "GET",
+      credentials: "include", // Inclut les cookies
+    });
+
+    if (!response.ok) {
+      throw new Error("Erreur lors de la récupération des données.");
+    }
+    console.log("response " + response);
+    const data = await response.json();
+    console.log("Données protégées récupérées :", data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//------------------------ Connexion End
+
+//------------------------ jwt
 
 function addCookie(cookie) {
-  console.log("jwt " + cookie);
   // Créer un cookie avec le JWT
   document.cookie = `token=${cookie}; path=/; Secure;  HttpOnly; SameSite=Strict;`;
-
   // Options supplémentaires (si vous pouvez configurer via le serveur ou autres moyens) :
   // - HttpOnly : Empêche l'accès au cookie via JavaScript (doit être configuré côté serveur)
   // - Secure : Le cookie est envoyé uniquement sur des connexions HTTPS
@@ -69,68 +118,38 @@ function addCookie(cookie) {
   // - path=/ : Le cookie est accessible sur toutes les pages du site
 }
 
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
 const btnTest = document.getElementById("test");
 
-function test() {
-    console.log("test");
-    const jwtFromCookie = getCookie('token');
-    console.log("before test " + jwtFromCookie);
+//------------------------ jwt End
 
-    fetch(BASE_URL + "/api/product/all",{
-        method: 'GET',  
-        headers: {
-            'Authorization': `Bearer ${jwtFromCookie}`,  
-            'Content-Type': 'application/json',  
-        }
-    }).then(response => {
-        if (!response.ok) {
-        
-            throw new Error('Network response was not ok');
-        }
-        return response.json();  
-    })
-    .then(data => {
-        console.log('Data:', data); 
-    });
-
-}
-//------------------------ jwt End 
-
-//------------------------ Register 
+//------------------------ Register
 document
   .getElementById("registerForm")
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const cookieName = 'token';
+    const cookieName = "token";
     // Si le cookie était sécurisé et utilisait SameSite, vous pouvez également ajouter ces attributs
     document.cookie = `${cookieName}=; path=/; Secure; SameSite=Strict; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
 
     const username = document.getElementById("usernameRegister").value;
     const password = document.getElementById("passwordRegister").value;
     const email = document.getElementById("emailRegister").value;
-    var jwt ;
+    var jwt;
 
     const userData = {
       username: username,
       password: password,
-      email: email
+      email: email,
     };
     const postInit = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-        mode: "cors",
-      };
-   
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+      mode: "cors",
+    };
 
     fetch(BASE_URL + "/api/auth/register", postInit)
       .then((response) => response.json())
@@ -141,5 +160,3 @@ document
       })
       .catch((error) => console.error("Erreur:", error));
   });
-
-

@@ -27,10 +27,9 @@
         const stripe = Stripe('pk_test_51MUWSJAuJzjqYWzf2mdG26Me4DgROAqkcBbdBG3BfCLRp1piAc2BF71URsaRZeaabbadrY3Edf6hfDnbwVPpT44x00JAcD3xL6');
 
         document.getElementById('checkout-button').addEventListener('click', () => {
-            fetch(BASE_URL + '/create-checkout-session', {
+            fetch(BASE_URL + "/create-checkout-session", {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${jwtFromCookie}`, 
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -38,6 +37,7 @@
                     amount: 2000,  // Montant en centimes, 2000 = $20.00
                     quantity: 1
                 }),
+                mode: "cors",
             })
                 .then(response => response.text())
                 .then(sessionUrl => {
