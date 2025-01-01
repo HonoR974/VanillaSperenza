@@ -5,7 +5,8 @@ const get = {
   headers: {
     "Content-Type": "application/json",
   },
-  mode: "cors",
+  credentials: "include",
+  mode: "cors"
 };
 
 

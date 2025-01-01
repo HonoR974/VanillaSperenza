@@ -26,7 +26,7 @@ document
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    var jwt;
+  
     console.log("appel login"); 
     const userData = {
       username: username,
@@ -41,68 +41,39 @@ document
       credentials: "include", // Inclut les cookies dans la requête
     };
 
+    login(userData.username, userData.username);
 
-    fetch("http://localhost:8080/api/auth/login", postInit)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("data " + data); 
-    });
-    
-  
   });
 
-const get = {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  credentials: "include",
-};
+  async function login(username, password) {
+    try {
 
-function test() {
-  fetch(BASE_URL + "/api/users/me", get)
-    .then((response) => response.json())
-    .then((response) => {
-      console.log("response " + response);
-    })
-    .catch((error) => console.error("Erreur:", error));
-}
+      
+        const response = await fetch('http://localhost:8080/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
 
-function test2() {
-  const getTest = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  };
-  fetch(BASE_URL + "/api/product/all", getTest)
-    .then((response) => response.json())
-    .then((response) => {
-      console.log("response 2 " + response);
-    })
-    .catch((error) => console.error("Erreur:", error));
-}
+        if (!response.ok) {
+            throw new Error('Login failed');
+        }
+   
+        const data = await response.json();
+        const token = data.token;
 
-// Exemple d'utilisation
+        // Enregistrer le token dans les cookies
+        document.cookie = `jwt=${token}; path=/; Secure; HttpOnly`;
 
-const fetchProtectedData = async () => {
-  try {
-    const response = await fetch("http://localhost:8080/api/product/all", {
-      method: "GET",
-      credentials: "include", // Inclut les cookies
-    });
-
-    if (!response.ok) {
-      throw new Error("Erreur lors de la récupération des données.");
+         // Rediriger vers la nouvelle page
+         window.location.href = "productList.html";
+    } catch (error) {
+        console.error('Error during login:', error);
     }
-    console.log("response " + response);
-    const data = await response.json();
-    console.log("Données protégées récupérées :", data);
-  } catch (error) {
-    console.error(error);
-  }
-};
+}
+
 
 //------------------------ Connexion End
 
@@ -118,7 +89,6 @@ function addCookie(cookie) {
   // - path=/ : Le cookie est accessible sur toutes les pages du site
 }
 
-const btnTest = document.getElementById("test");
 
 //------------------------ jwt End
 
@@ -128,35 +98,46 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const cookieName = "token";
-    // Si le cookie était sécurisé et utilisait SameSite, vous pouvez également ajouter ces attributs
-    document.cookie = `${cookieName}=; path=/; Secure; SameSite=Strict; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
-
     const username = document.getElementById("usernameRegister").value;
     const password = document.getElementById("passwordRegister").value;
     const email = document.getElementById("emailRegister").value;
-    var jwt;
-
+   
     const userData = {
       username: username,
       password: password,
       email: email,
     };
+   
+    inscription(userData.username, userData.password, userData.email);
+   
+  });
+
+  async function inscription(username, password, email) {
     const postInit = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userData),
+      body: JSON.stringify({ username, password, email }),
       mode: "cors",
     };
+    try {
 
-    fetch(BASE_URL + "/api/auth/register", postInit)
-      .then((response) => response.json())
-      .then((response) => {
-        jwt = response.accessToken;
+      const response = await fetch(BASE_URL + "/signup", postInit);
+      
+      if (!response.ok) {
+        throw new Error('Register failed');
+     }
 
-        addCookie(jwt);
-      })
-      .catch((error) => console.error("Erreur:", error));
-  });
+     const data = await response.json();
+     const token = data.token;
+
+     // Enregistrer le token dans les cookies
+     document.cookie = `jwt=${token}; path=/; Secure; HttpOnly`;
+
+     // Rediriger vers la nouvelle page
+     window.location.href = "productList.html";
+    } catch (error) {
+        console.error('Error during Register:', error);
+    }
+  }
