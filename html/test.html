@@ -1,29 +1,58 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/menu.css" />
-    <link rel="stylesheet" href="../css/test.css">
-  </head>
-  <body>
-    <!-- Conteneur pour le menu -->
-    <div id="menu-container"></div>
- 
-      <!-- Bouton pour afficher/masquer le bandeau -->
-      <button id="toggleButton">☰ Ouvrir/fermer</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Authentication</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
 
-      <!-- Bandeau vertical -->
-      <div id="bandeauVertical" class="bandeau">
-          <ul>
-              <li><a href="#">Accueil</a></li>
-              <li><a href="#">À propos</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Contact</a></li>
-          </ul>
-      </div>
+    <h1>Protected Route</h1>
+    <button id="testRoute">Access Protected Route</button>
 
-    <script src="../js/test.js"></script>
-    <script src="../js/menu.js"></script>
-  </body>
+    <script>
+      const BASE_URL = "http://localhost:8080";
+        const loginForm = document.getElementById('loginForm');
+        const testRouteButton = document.getElementById('testRoute');
+
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch(BASE_URL + '/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (response.ok) {
+                alert('Login successful!');
+            } else {
+                alert('Login failed!');
+            }
+        });
+
+        testRouteButton.addEventListener('click', async () => {
+            const response = await fetch(BASE_URL +'/api/tests', {
+                method: 'GET',
+                credentials: 'include', // Important pour inclure les cookies
+            });
+
+            if (response.ok) {
+                const message = await response.text();
+                alert(message);
+            } else {
+                alert('Access denied!');
+            }
+        });
+    </script>
+</body>
 </html>
