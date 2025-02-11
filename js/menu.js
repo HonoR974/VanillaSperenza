@@ -19,7 +19,7 @@ function createMenu() {
               </div>
              
               <div id="log">
-                      <button class="panier">
+                      <button class="panier" >
                          <img class="icon" src="../assets/icon/shopping-bag.png" alt="login panier">
                       </button> 
                   <a href="log.html">

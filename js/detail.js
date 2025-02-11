@@ -65,3 +65,26 @@ function addProductToPanier() {
 
 //fais une verification du client
 document.addEventListener("DOMContentLoaded", function () {});
+
+
+//me test 
+async function me() {
+  try {
+    const response = await fetch("http://localhost:8080/users/me", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", // Nécessaire pour envoyer le cookie JWT
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch protected data");
+    }
+
+    const data = await response.json();
+    console.log("Protected data:", data);
+  } catch (error) {
+    console.error("Error fetching protected data:", error);
+  }
+}

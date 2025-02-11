@@ -1,58 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JWT Authentication</title>
+    <title>Sidebar Panier</title>
+    <link rel="stylesheet" href="../css/test.css">
+
 </head>
 <body>
-    <h1>Login</h1>
-    <form id="loginForm">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
 
-    <h1>Protected Route</h1>
-    <button id="testRoute">Access Protected Route</button>
+     <!-- Menu -->
+     <header>
+        <nav>
+            <div class="iconSide">
+                <a href="index.html">
+                    <img class="icon" src="../assets/icon/logo.png" alt="logo icon">
+                </a>
+            </div>
+            <div class="link">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="productList.html">Produits</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+           
+            <div id="log">
+                    <button id="panier" >
+                            <img class="icon" src="../assets/icon/shopping-bag.png" alt="login panier"/>
+                        </button> 
+                       <a href="log.html">
+                    <img class="icon" src="../assets/icon/login.png" alt="login icon">
+                </a>
+            </div>
+        </nav>
+    </header>
 
-    <script>
-      const BASE_URL = "http://localhost:8080";
-        const loginForm = document.getElementById('loginForm');
-        const testRouteButton = document.getElementById('testRoute');
 
-        loginForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
+   
+    
+    <!-- Conteneur de la sidebar (invisible par défaut) -->
+    <div id="sidebar-container">
+        <div id="sidebar" class="sidebar">
+            <button id="closeSidebar" class="close-btn">&times;</button>
+            <h2>Votre Panier</h2>
+            <p>Ajoutez des articles à votre panier ici.</p>
+        </div>
+    </div>
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+    <script src="../js/test.js"></script>
+ 
 
-            const response = await fetch(BASE_URL + '/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password }),
-            });
-
-            if (response.ok) {
-                alert('Login successful!');
-            } else {
-                alert('Login failed!');
-            }
-        });
-
-        testRouteButton.addEventListener('click', async () => {
-            const response = await fetch(BASE_URL +'/api/tests', {
-                method: 'GET',
-                credentials: 'include', // Important pour inclure les cookies
-            });
-
-            if (response.ok) {
-                const message = await response.text();
-                alert(message);
-            } else {
-                alert('Access denied!');
-            }
-        });
-    </script>
 </body>
 </html>
