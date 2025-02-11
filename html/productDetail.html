@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,9 +11,43 @@
 
 <body>
 
-  <!-- Conteneur pour le menu -->
-  <div id="menu-container"></div>
+ 
+     <!-- Menu -->
+     <header>
+      <nav>
+          <div class="iconSide">
+              <a href="index.html">
+                  <img class="icon" src="../assets/icon/logo.png" alt="logo icon">
+              </a>
+          </div>
+          <div class="link">
+              <ul>
+                  <li><a href="index.html">Accueil</a></li>
+                  <li><a href="productList.html">Produits</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+              </ul>
+          </div>
+         
+          <div id="log">
+                  <button id="panier" >
+                          <img class="icon" src="../assets/icon/shopping-bag.png" alt="login panier"/>
+                      </button> 
+                     <a href="log.html">
+                  <img class="icon" src="../assets/icon/login.png" alt="login icon">
+              </a>
+          </div>
+      </nav>
+  </header>
 
+
+  <!-- Conteneur de la sidebar (invisible par défaut) -->
+  <div id="sidebar-container">
+      <div id="sidebar" class="sidebar">
+          <button id="closeSidebar" class="close-btn">&times;</button>
+          <h2>Votre Panier</h2>
+          <p>Ajoutez des articles à votre panier ici.</p>
+      </div>
+  </div>
   <div id="containerDetail">
     <div id="cadreDetail">
 
@@ -68,8 +103,7 @@
 
 
   <script src="../js/detail.js"></script>
-  <script src="../js/menu.js"></script>
-  <script src="../js/test.js"></script>
+  <script src="../js/panier.js"></script>
 </body>
 
 </html>
