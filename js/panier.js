@@ -50,16 +50,27 @@ function addProductToPanier() {
   getPanierfromLocalStorage();
   //cherche le produit dans le localStorage
   var productInfo = JSON.parse(localStorage.getItem("productInfo"));
-  let productDetail = new Product(
-    productInfo.id,
-    productInfo.name,
-    productInfo.prix,
-    parseInt(document.getElementById("quantity").value),
-    productInfo.pathImage
-  );
 
-  //ajout à l'array
-  products.push(productDetail);
+  let quantityToAdd = parseInt(document.getElementById("quantity").value);
+  // Vérifie si le produit existe déjà dans le panier
+  let existingProduct = products.find(
+    (product) => product.id === productInfo.id
+  );
+  if (existingProduct) {
+    // Si le produit existe déjà, augmente la quantité
+    existingProduct.quantite += quantityToAdd;
+  } else {
+    // Sinon, ajoute un nouveau produit
+    let productDetail = new Product(
+      productInfo.id,
+      productInfo.name,
+      productInfo.prix,
+      parseInt(document.getElementById("quantity").value),
+      productInfo.pathImage
+    );
+    products.push(productDetail);
+  }
+
   addPanierToLocalStorage();
 }
 
