@@ -1,55 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar Panier</title>
-    <link rel="stylesheet" href="../css/test.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input avec + et -</title>
+  <style>
+    .number-input {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
+    button {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    input[type="number"] {
+      width: 60px;
+      text-align: center;
+      font-size: 18px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 5px;
+    }
+  </style>
 </head>
 <body>
 
-     <!-- Menu -->
-     <header>
-        <nav>
-            <div class="iconSide">
-                <a href="index.html">
-                    <img class="icon" src="../assets/icon/logo.png" alt="logo icon">
-                </a>
-            </div>
-            <div class="link">
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="productList.html">Produits</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-           
-            <div id="log">
-                    <button id="panier" >
-                            <img class="icon" src="../assets/icon/shopping-bag.png" alt="login panier"/>
-                        </button> 
-                       <a href="log.html">
-                    <img class="icon" src="../assets/icon/login.png" alt="login icon">
-                </a>
-            </div>
-        </nav>
-    </header>
+<div class="number-input">
+  <button id="decrease">-</button>
+  <input type="number" id="number" 
+  value="0" min="0" max="100" />
+  <button id="increase">+</button>
+</div>
 
+<script>
+  const decreaseBtn = document.getElementById("decrease");
+  const increaseBtn = document.getElementById("increase");
+  const numberInput = document.getElementById("number");
 
-   
-    
-    <!-- Conteneur de la sidebar (invisible par défaut) -->
-    <div id="sidebar-container">
-        <div id="sidebar" class="sidebar">
-            <button id="closeSidebar" class="close-btn">&times;</button>
-            <h2>Votre Panier</h2>
-            <p>Ajoutez des articles à votre panier ici.</p>
-        </div>
-    </div>
+  decreaseBtn.addEventListener("click", () => {
+    let currentValue = parseInt(numberInput.value);
+    if (currentValue > parseInt(numberInput.min)) {
+      numberInput.value = currentValue - 1;
+    }
+  });
 
-    <script src="../js/test.js"></script>
- 
+  increaseBtn.addEventListener("click", () => {
+    let currentValue = parseInt(numberInput.value);
+    if (currentValue < parseInt(numberInput.max)) {
+      numberInput.value = currentValue + 1;
+    }
+  });
+</script>
 
 </body>
 </html>

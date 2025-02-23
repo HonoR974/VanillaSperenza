@@ -1,91 +1,121 @@
+<!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/log.css">
-        <link rel="stylesheet" href="../css/menu.css">
-        <title>Connexion</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/log.css">
+    <link rel="stylesheet" href="../css/menu.css">
+    <title>Connexion</title>
+</head>
 
-    <body>
+<body>
 
-        <!-- Conteneur pour le menu -->
-        <div id="menu-container"></div>
-
-        <div class="signinSide">
-            <div class="signinCard">
-                <div class="imgSignin">
-                    <img src="../assets/icon/userLogin.png"
-                        alt="User Login Icon">
-                </div>
-
-                <div id="signin">
-                    <div class="formulaireSignin">
-                        <h1>Connexion </h1>
-                        <form id="loginForm" class="formulaire">
-                            <label for="name">Username :</label><br>
-
-                            <input class="inputFormulaire" type="text"
-                                id="username" name="username" required
-                                placeholder="Username"><br><br>
-
-                            <label for="password">Mot de passe:</label><br>
-                            <input class="inputFormulaire" type="password"
-                                id="password" name="password" required
-                                placeholder="Password"><br><br>
-
-                            <button class="btnLogin" type="submit">Se
-                                connecter</button>
-                        </form>
-                        <div class="space">
-                            <button onclick="show()">Voulez vous inscrire ?
-                            </button>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div id="registerSide">
-                    <div class="formulaireSignin">
-                        <h1>Inscription </h1>
-                        <form class="formulaire" id="registerForm">
-                            <label for="name">Username :</label><br>
-                            <input class="inputFormulaire" type="text"
-                                id="usernameRegister" name="username" required
-                                placeholder="Username"><br><br>
-
-                            <label for="name">Email:</label><br>
-                            <input class="inputFormulaire" type="text"
-                                id="emailRegister" name="email" required
-                                placeholder="Email"><br><br>
-
-                            <label for="password">Mot de passe:</label><br>
-                            <input class="inputFormulaire" type="password"
-                                id="passwordRegister" name="password" required
-                                placeholder="PassWord"><br><br>
-
-                            <button class="btnLogin"
-                                type="submit">S'inscrire</button>
-                        </form>
-                        <div class="space">
-                            <button onclick="show()">Voulez vous vous connectez
-                                ? </button>
-                        </div>
-
-                    </div>
-                </div>
-
+    <!-- Menu -->
+    <header>
+        <nav>
+            <div class="iconSide">
+                <a href="index.html">
+                    <img class="icon" src="../assets/icon/logo.png" alt="logo icon">
+                </a>
             </div>
+            <div class="link">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="productList.html">Produits</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div id="log">
+                <button id="panier">
+                    <img class="icon" src="../assets/icon/shopping-bag.png" alt="login panier" />
+                </button>
+                <a href="log.html">
+                    <img class="icon" src="../assets/icon/login.png" alt="login icon">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Conteneur de la sidebar (invisible par défaut) -->
+    <div id="sidebar-container">
+        <div id="sidebar" class="sidebar">
+            <div id="titlePanier">
+                <button id="closeSidebar" class="close-btn">&times;</button>
+                <h2>Votre Panier</h2>
+            </div>
+           
+            <p>Ajoutez des articles à votre panier ici.</p>
+            <div id="productFromPanier"></div>
         </div>
+    </div>
 
 
-        <button class="btnLogin" onclick="fetchDataWithToken()">Test</button>
-        <button class="btnLogin" onclick="logout()">logout</button>
+    <div class="signinSide">
+        <div class="signinCard">
+            <div class="imgSignin">
+                <img src="../assets/icon/userLogin.png" alt="User Login Icon">
+            </div>
 
-        <script src="../js/log.js"></script>
-        <script src="../js/menu.js"></script>
+            <div id="signin">
+                <div class="formulaireSignin">
+                    <h1>Connexion </h1>
+                    <form id="loginForm" class="formulaire">
+                        <label for="name">Username :</label><br>
 
-    </body>
+                        <input class="inputFormulaire" type="text" id="username" name="username" required
+                            placeholder="Username"><br><br>
+
+                        <label for="password">Mot de passe:</label><br>
+                        <input class="inputFormulaire" type="password" id="password" name="password" required
+                            placeholder="Password"><br><br>
+
+                        <button class="btnLogin" type="submit">Se
+                            connecter</button>
+                    </form>
+                    <div class="space">
+                        <button onclick="show()">Voulez vous inscrire ?
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="registerSide">
+                <div class="formulaireSignin">
+                    <h1>Inscription </h1>
+                    <form class="formulaire" id="registerForm">
+                        <label for="name">Username :</label><br>
+                        <input class="inputFormulaire" type="text" id="usernameRegister" name="username" required
+                            placeholder="Username"><br><br>
+
+                        <label for="name">Email:</label><br>
+                        <input class="inputFormulaire" type="text" id="emailRegister" name="email" required
+                            placeholder="Email"><br><br>
+
+                        <label for="password">Mot de passe:</label><br>
+                        <input class="inputFormulaire" type="password" id="passwordRegister" name="password" required
+                            placeholder="PassWord"><br><br>
+
+                        <button class="btnLogin" type="submit">S'inscrire</button>
+                    </form>
+                    <div class="space">
+                        <button onclick="show()">Voulez vous vous connectez
+                            ? </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../js/log.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/panier.js"></script>
+
+</body>
 
 </html>

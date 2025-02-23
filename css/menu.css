@@ -83,6 +83,7 @@ ul {
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  z-index: 4;
 }
 
 
@@ -102,11 +103,11 @@ ul {
   position: fixed;
   top: 0;
   right: -300px; /* Caché par défaut */
-  width: 300px;
+  width: 350px;
   height: 100vh; /* Prend toute la hauteur */
   background: white;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+
   transition: right 0.3s ease-in-out;
 }
 
@@ -121,11 +122,85 @@ ul {
 
 /* Bouton de fermeture */
 .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
+  font-size: 40px;
   background: none;
   border: none;
   cursor: pointer;
 }
+
+#titlePanier {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+  background-color: rgba(237, 224, 212, 0.7);
+}
+
+#textPanier{
+  padding: 20px 0px 20px 0px;
+  text-align: center;
+  font-size: 20px;
+  background-color: rgba(237, 224, 212, 0.3);
+}
+
+.contentImgProduct {
+
+}
+
+.imgLineProduct {
+  height: 50px;
+  width: 60px;
+}
+
+.lineProduct {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: rgba(237, 224, 212, 0.3);
+  height: 50px;
+  align-items: center;
+  margin: 5px;
+}
+
+.titleProduct {
+  font-size: 20px;
+  text-align: center;
+}
+
+input[type="number"] {
+  width: 50%;
+  text-align: center;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.button-number {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  border: none;
+ /* background-color: #4CAF50;*/
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.button-number:hover {
+  background-color: #45a049;
+}
+
+.number-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.quantityNumber {
+  width: 35%;
+  text-align: center;
+  border-radius: 5px;
+}
+
