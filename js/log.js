@@ -48,6 +48,8 @@ async function login(username, password) {
 
     if (response.status != 200) {
       throw new Error("Login failed");
+    }else {
+      window.location = "productList.html"; 
     }
   } catch (error) {
     console.error("Error during login:", error);
