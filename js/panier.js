@@ -4,6 +4,8 @@ const closeBtn = document.getElementById("closeSidebar");
 const sidebarContainer = document.getElementById("sidebar-container");
 const sidebar = document.getElementById("sidebar");
 
+const stripe = Stripe("pk_test_51MUWSJAuJzjqYWzf2mdG26Me4DgROAqkcBbdBG3BfCLRp1piAc2BF71URsaRZeaabbadrY3Edf6hfDnbwVPpT44x00JAcD3xL6");
+
 // Ouvrir la sidebar
 opentBtnPanier.addEventListener("click", () => {
   sidebarContainer.classList.add("active");
@@ -87,7 +89,7 @@ function getPanierContent() {
   //containerDetail
   const contentPanier = document.getElementById("productFromPanier");
   products = JSON.parse(localStorage.getItem("panier")) || [];
-
+  
   products.forEach((product) => {
     //creation de la ligne
     const line = document.createElement("div");
@@ -178,8 +180,70 @@ function getPanierContent() {
     line.appendChild(contentRight);
 
     contentPanier.appendChild(line);
+    
+    
   });
+
+  //Validation Panier 
+  const btnValidation = document.createElement("button"); 
+  btnValidation.id = "btnValidationPanier"; 
+  btnValidation.innerHTML = "Validation Panier";
+  
+  let id = 17; 
+  btnValidation.onclick = () => checkoutStripe(id); 
+
+  contentPanier.appendChild(btnValidation); 
 }
+
+async function  checkoutStripe(id) {
+
+  let existingProduct = products.find(
+    (product) => product.id === id
+  );
+
+  const productName = existingProduct.name; // Product name
+  const quantity = existingProduct.quantite; // Quantity selected
+  const price = existingProduct.prix; 
+
+  try {
+    // Create the DTO object to match backend fields
+    const createPaymentRequest = {
+        name: productName, // Product name
+        amount: price, // Total amount in cents (Stripe expects cents)
+        quantity : quantity// Quantity
+    };
+
+    // Send request to backend
+    const response = await fetch("http://localhost:8081/product/v1/checkout", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(createPaymentRequest),
+   
+        mode:"cors"
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Assuming the backend responds with the sessionId and httpStatus
+    const stripeResponse = await response.json();
+
+    // Redirect to Stripe Checkout
+    const result = await stripe.redirectToCheckout({ sessionId: stripeResponse.sessionId });
+    if (result.error) {
+        console.error("Stripe Checkout Error:", result.error.message);
+    }
+} catch (error) {
+    console.error("Error during checkout:", error);
+}
+
+}
+
+
+
 
 function deleteArticleFromPanier(id) {
   console.log("Suppression de l'article avec l'id : " + id);
