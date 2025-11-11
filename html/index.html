@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/home.css">
-        <link rel="stylesheet" href="../css/menu.css">
-        <title>Accueil</title>
-        <!-- Link Swiper JS CSS-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/menu.css">
+
+    <title>Accueil</title>
+    <!-- Link Swiper JS CSS
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        -->
+
+</head>
+
+<body>
 
 
-    </head>
 
-    <body>
-
-
-      
-     <!-- Menu -->
-     <header>
+    <!-- Menu -->
+    <header>
         <nav>
             <div class="iconSide">
                 <a href="index.html">
@@ -32,121 +33,118 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
-           
+
             <div id="log">
-                    <button id="panier" >
-                            <img class="icon" src="../assets/icon/shopping-bag.png" alt="login panier"/>
-                        </button> 
-                       <a href="log.html">
+                <button id="panier">
+                    <img class="icon" src="../assets/icon/shopping-bag.png" alt="login panier" />
+                </button>
+                <a href="log.html">
                     <img class="icon" src="../assets/icon/login.png" alt="login icon">
                 </a>
             </div>
         </nav>
     </header>
 
-    
+
     <!-- Conteneur de la sidebar (invisible par défaut) -->
     <div id="sidebar-container">
         <div id="sidebar" class="sidebar">
-          <div id="titlePanier">
-            <button id="closeSidebar" class="close-btn">&times;</button>
-            <h2>Votre Panier</h2>
-          </div>
-    
-          <p id="textPanier">Ajoutez des articles à votre panier ici.</p>
-          <div id="productFromPanier"></div>
-        </div>
-      </div>
-
-
-        <!-- Bandeau ecriture Home -->
-        <div class="welcome">
-            <div class="contentBienvenu">
-                <div style="color:white; text-shadow: none;">
-                    <span>Bienvenue</span>
-                </div>
-
-                <div></div>
-                <p >Sur le E-shop de Speranza</p>
-                <p >Vous y trouverez touts les produits confectionné à la main avec amour et pation </p>
-                <p >Entrez dans l'univers Speranza et decouvrez les produits qui vous ressemblent et qui vous correspondent </p>
-            </div>
-
-        </div>
-        </div>
-
-        <!-- Nos nouveautés avant carousel -->
-        <div class="titleCarousel">
-            NOS NOUVEAUX PRODUITS
-        </div>
-
-        <!-- Carousel -->
-        <div id="cadreCarousel">
-            <div class="container swiper">
-                <div class="slider-wrapper">
-                    <div class="card-list swiper-wrapper ">
-
-                    </div>
-
-                    <!-- If we need pagination 
-                    <div class="swiper-pagination"></div>
-                        -->
-                    <!-- If we need navigation buttons -->
-                    <div class="swiper-slide-button swiper-button-prev"></div>
-                    <div class="swiper-slide-button swiper-button-next"></div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <!-- Btn En voirs plus qui envois à la page product -->
-        <div class="cadreVoirPlus">
-            <button class="btnVoirPlus" onclick="productList()">
-                En voir plus
-            </button>
-        </div>
-
-        <!-- Presentation de la marque Sperenza -->
-        <div class="cadreMarque">
-            <div class="titleMarque">
-                <h1>La Marque Sperenza </h1>
-            </div>
-
-            <div class="contentMarque">
-                Integer fringilla consectetur erat eu commodo. Morbi sed hendrerit orci, quis iaculis ex. Integer congue
-                odio et condimentum suscipit. Sed lobortis eget felis vitae imperdiet. Nunc rutrum ipsum nec hendrerit
-                auctor. Pellentesque vitae nunc viverra, imperdiet tortor eu, gravida orci. Aliquam mollis elementum mi, et
-                ornare dui feugiat vel. Aenean id ligula massa.
-            </div>
-
-        </div>
-
-        <!-- Reseau-->
-        <div class="reseau">
-
-            <h1 class="titleReseau">Réseaux</h1>
-        </div>
-
-
-        <!--Footer-->
-        <footer class="footer">
-        </footer>
-
-        <!-- Conteneur de la sidebar (invisible par défaut) -->
-        <div id="sidebar-container">
-            <div id="sidebar" class="sidebar">
+            <div id="titlePanier">
                 <button id="closeSidebar" class="close-btn">&times;</button>
                 <h2>Votre Panier</h2>
-                <p>Ajoutez des articles à votre panier ici.</p>
             </div>
+
+            <p id="textPanier">Ajoutez des articles à votre panier ici.</p>
+            <div id="productFromPanier"></div>
+        </div>
+    </div>
+
+
+    <!-- Bandeau ecriture Home -->
+    <div class="welcome">
+        <div class="contentBienvenu">
+            <div style="color:white; text-shadow: none;">
+                <span>Bienvenue</span>
+            </div>
+
+            <div></div>
+            <p>Sur le E-shop de Speranza</p>
+            <p>Vous y trouverez touts les produits confectionné à la main avec amour et pation </p>
+            <p>Entrez dans l'univers Speranza et decouvrez les produits qui vous ressemblent et qui vous correspondent
+            </p>
         </div>
 
-        <!-- Link SwiperJS script JS-->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-        <script src="../js/home.js"></script>
-        <script src="../js/panier.js"></script>
-  
-    </body>
+    </div>
+    </div>
+
+    <!-- Nos nouveautés avant carousel -->
+    <div class="titleCarousel">
+        NOS NOUVEAUX PRODUITS
+    </div>
+
+    <!-- Carousel -->
+    <div id="cadreCarousel">
+        <div class="container swiper">
+            <div class="slider-wrapper">
+                <div class="card-list swiper-wrapper ">
+
+                </div>
+
+                <!-- If we need pagination 
+                    <div class="swiper-pagination"></div>
+                        -->
+                <!-- If we need navigation buttons -->
+                <div class="swiper-slide-button swiper-button-prev"></div>
+                <div class="swiper-slide-button swiper-button-next"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Btn En voirs plus qui envois à la page product -->
+    <div class="cadreVoirPlus">
+        <button class="btnVoirPlus" onclick="productList()">
+            En voir plus
+        </button>
+    </div>
+
+    <!-- Presentation de la marque Sperenza -->
+    <div class="cadreMarque">
+        <div class="titleMarque">
+            <h1>La Marque Sperenza </h1>
+        </div>
+
+        <div class="contentMarque">
+            Integer fringilla consectetur erat eu commodo. Morbi sed hendrerit orci, quis iaculis ex. Integer congue
+            odio et condimentum suscipit. Sed lobortis eget felis vitae imperdiet. Nunc rutrum ipsum nec hendrerit
+            auctor. Pellentesque vitae nunc viverra, imperdiet tortor eu, gravida orci. Aliquam mollis elementum mi, et
+            ornare dui feugiat vel. Aenean id ligula massa.
+        </div>
+
+    </div>
+
+    <!-- Reseau-->
+    <div class="reseau">
+
+        <h1 class="titleReseau">Réseaux</h1>
+    </div>
+
+
+    <!--Footer-->
+    <footer class="footer">
+    </footer>
+
+
+
+    <!-- Link SwiperJS script JS-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="../js/home.js"></script>
+    <script src="../js/panier.js"></script>
+
+
+
+</body>
 
 </html>

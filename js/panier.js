@@ -1,3 +1,8 @@
+window.onload = function () {
+    console.log("appel panier "); 
+    
+};
+
 // Sélection des éléments
 const opentBtnPanier = document.getElementById("panier");
 const closeBtn = document.getElementById("closeSidebar");
