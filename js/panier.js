@@ -8,6 +8,7 @@ const stripe = Stripe("pk_test_51MUWSJAuJzjqYWzf2mdG26Me4DgROAqkcBbdBG3BfCLRp1pi
 
 // Ouvrir la sidebar
 opentBtnPanier.addEventListener("click", () => {
+  console.log("open panier"); 
   sidebarContainer.classList.add("active");
   sidebar.classList.add("active");
   getPanierContent();
@@ -201,16 +202,18 @@ async function  checkoutStripe(id) {
     (product) => product.id === id
   );
 
+  console.log("existing product " + existingProduct);
   const productName = existingProduct.name; // Product name
   const quantity = existingProduct.quantite; // Quantity selected
-  const price = existingProduct.prix; 
+  const price = existingProduct.prix * 100; //Prix is in cent donc * 100 pour le convertir 
 
   try {
     // Create the DTO object to match backend fields
     const createPaymentRequest = {
         name: productName, // Product name
         amount: price, // Total amount in cents (Stripe expects cents)
-        quantity : quantity// Quantity
+        quantity : quantity,// Quantity
+        currency : "EUR"
     };
 
     // Send request to backend
