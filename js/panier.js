@@ -1,19 +1,15 @@
-window.onload = function () {
-    console.log("appel panier "); 
-    
-};
-
 // Sélection des éléments
 const opentBtnPanier = document.getElementById("panier");
 const closeBtn = document.getElementById("closeSidebar");
 const sidebarContainer = document.getElementById("sidebar-container");
 const sidebar = document.getElementById("sidebar");
 
-const stripe = Stripe("pk_test_51MUWSJAuJzjqYWzf2mdG26Me4DgROAqkcBbdBG3BfCLRp1piAc2BF71URsaRZeaabbadrY3Edf6hfDnbwVPpT44x00JAcD3xL6");
+const stripe = Stripe(
+  "pk_test_51MUWSJAuJzjqYWzf2mdG26Me4DgROAqkcBbdBG3BfCLRp1piAc2BF71URsaRZeaabbadrY3Edf6hfDnbwVPpT44x00JAcD3xL6"
+);
 
 // Ouvrir la sidebar
 opentBtnPanier.addEventListener("click", () => {
-  console.log("open panier"); 
   sidebarContainer.classList.add("active");
   sidebar.classList.add("active");
   getPanierContent();
@@ -52,9 +48,18 @@ class Product {
   }
 }
 
+class Panier {
+  id; 
+  products; 
+  
+
+}
+
 let products = [];
 
 function addProductToPanier() {
+
+   console.log("addProduct");  
   getPanierfromLocalStorage();
   //cherche le produit dans le localStorage
   var productInfo = JSON.parse(localStorage.getItem("productInfo"));
@@ -91,11 +96,10 @@ function getPanierfromLocalStorage() {
 }
 
 function getPanierContent() {
-
   //containerDetail
   const contentPanier = document.getElementById("productFromPanier");
   products = JSON.parse(localStorage.getItem("panier")) || [];
-  
+
   products.forEach((product) => {
     //creation de la ligne
     const line = document.createElement("div");
@@ -137,6 +141,7 @@ function getPanierContent() {
     btnIncrease.className = "button-number increase";
     btnIncrease.innerHTML = "+";
 
+
     btnDecrease.addEventListener("click", () => {
       console.log("decrease button"); 
       let currentValue = parseInt(numberInput.value);
@@ -150,8 +155,13 @@ function getPanierContent() {
       let currentValue = parseInt(numberInput.value);
       if (currentValue < parseInt(numberInput.max)) {
         numberInput.value = currentValue + 1;
+        changeQuantiteProduct(product.id,numberInput.value );
       }
     });
+    
+
+   // btnIncrease.onclick = () => changeQuantiteProduct(product.id, numberInput.value);
+   // btnDecrease.onclick = () => changeQuantiteProduct(product.id, numberInput.value);
 
     const numberInput = document.createElement("input");
     numberInput.className = "quantityNumber";
@@ -168,90 +178,135 @@ function getPanierContent() {
 
     line.appendChild(contentProduct);
 
-    //prix & croix de suppression 
-    const contentRight = document.createElement("div"); 
-    
-    const croixSuppression = document.createElement("button"); 
-    croixSuppression.className =  "croixSuppression"; 
+    //prix & croix de suppression
+
+    const divPrixAndCroix = document.createElement("div");
+    divPrixAndCroix.className = "prixAndCroix";
+
+    const croixSuppression = document.createElement("button");
+    croixSuppression.className = "croixSuppression";
     croixSuppression.innerHTML = "&times";
-    
-    croixSuppression.onclick  = () => deleteArticleFromPanier(product.id); 
+
+    croixSuppression.onclick = () => deleteArticleFromPanier(product.id);
 
     const prix = document.createElement("div");
+    prix.className = "prix";
     prix.innerHTML = product.prix + "€";
 
-    contentRight.appendChild(croixSuppression); 
-    contentRight.appendChild(prix); 
+    divPrixAndCroix.appendChild(croixSuppression);
+    divPrixAndCroix.appendChild(prix);
 
-    line.appendChild(contentRight);
+    line.appendChild(divPrixAndCroix);
 
     contentPanier.appendChild(line);
-    
-    
   });
 
-  //Validation Panier 
-  const btnValidation = document.createElement("button"); 
-  btnValidation.id = "btnValidationPanier"; 
-  btnValidation.innerHTML = "Validation Panier";
-  
-  let id = 17; 
-  btnValidation.onclick = () => checkoutStripe(id); 
+  //Validation Panier
+  const divValidation = document.createElement("div");
+  divValidation.className = "validation";
 
-  contentPanier.appendChild(btnValidation); 
+  const btnValidation = document.createElement("button");
+  btnValidation.id = "btnValidationPanier";
+  btnValidation.innerHTML = "Validation Panier";
+
+  divValidation.appendChild(btnValidation);
+
+  let id = 17;
+  btnValidation.onclick = () => checkoutStripe(id);
+
+  contentPanier.appendChild(divValidation);
 }
 
-async function  checkoutStripe(id) {
-
-  let existingProduct = products.find(
-    (product) => product.id === id
-  );
+async function checkoutStripe(id) {
+  let existingProduct = products.find((product) => product.id === id);
 
   console.log("existing product " + existingProduct);
   const productName = existingProduct.name; // Product name
   const quantity = existingProduct.quantite; // Quantity selected
-  const price = existingProduct.prix * 100; //Prix is in cent donc * 100 pour le convertir 
+  const price = existingProduct.prix * 100; //Prix is in cent donc * 100 pour le convertir
 
   try {
     // Create the DTO object to match backend fields
     const createPaymentRequest = {
-        name: productName, // Product name
-        amount: price, // Total amount in cents (Stripe expects cents)
-        quantity : quantity,// Quantity
-        currency : "EUR"
+      name: productName, // Product name
+      amount: price, // Total amount in cents (Stripe expects cents)
+      quantity: quantity, // Quantity
+      currency: "EUR",
     };
 
     // Send request to backend
     const response = await fetch("http://localhost:8081/product/v1/checkout", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(createPaymentRequest),
-   
-        mode:"cors"
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(createPaymentRequest),
+
+      mode: "cors",
     });
 
     if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     // Assuming the backend responds with the sessionId and httpStatus
     const stripeResponse = await response.json();
 
     // Redirect to Stripe Checkout
-    const result = await stripe.redirectToCheckout({ sessionId: stripeResponse.sessionId });
+    const result = await stripe.redirectToCheckout({
+      sessionId: stripeResponse.sessionId,
+    });
     if (result.error) {
-        console.error("Stripe Checkout Error:", result.error.message);
+      console.error("Stripe Checkout Error:", result.error.message);
     }
-} catch (error) {
+  } catch (error) {
     console.error("Error during checkout:", error);
+  }
 }
 
+function changeQuantiteProduct(id, quantite) {
+  console.log(
+    "changeQuantite du product id " +
+      id +
+      " et changement de la quantie " +
+      quantite
+  );
+
+  //cherche le product avec l'id
+  const products = JSON.parse(localStorage.getItem("panier")) || [];
+  const product = products.find((p) => p.id === id);
+
+  product.quantite = quantite; 
+
+  addPanierToLocalStorage();
+
+
 }
 
+function putPanier() {
 
+  const requestPutProduct = {
+      idProduct: idProduct,
+    };
 
+  const postInit = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include", // Indique que les cookies doivent être inclus
+    body: JSON.stringify(requestPutProduct),
+    mode: "cors",
+  };
+
+   fetch(BASE_URL + "/api/panier/"+, postInit)
+    .then((response) => response.json())
+    .then((response) => {
+      console.log("response " + response);
+    })
+    .catch((error) => console.error("Erreur:", error));
+
+}
 
 function deleteArticleFromPanier(id) {
   console.log("Suppression de l'article avec l'id : " + id);
@@ -265,7 +320,6 @@ function deleteArticleFromPanier(id) {
   // Met à jour l'affichage du panier
   deletePanierContent();
   getPanierContent();
-
 }
 
 function deletePanierContent() {
