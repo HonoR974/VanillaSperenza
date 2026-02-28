@@ -32,6 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
     //prix
     const prix = document.getElementById("prix");
     prix.innerHTML = productData.prix + "€";
+
+    
+
   } else {
     // Gérer le cas où il n'y a pas de données dans le local storage
     var detailsContainer = document.getElementById("detailsContainer");
@@ -39,35 +42,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-//Ajoute un produit au client
-function addProductToPanier() {
-  const requestAddProduct = {
-    idProduct: idProduct,
-  };
 
-  const postInit = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include", // Indique que les cookies doivent être inclus
-    body: JSON.stringify(requestAddProduct),
-    mode: "cors",
-  };
-
-  fetch(BASE_URL + "/api/panier/add", postInit)
-    .then((response) => response.json())
-    .then((response) => {
-      console.log("response " + response);
-    })
-    .catch((error) => console.error("Erreur:", error));
-}
 
 //fais une verification du client
 document.addEventListener("DOMContentLoaded", function () {});
 
 
 //me test 
+/*
 async function me() {
   try {
     const response = await fetch("http://localhost:8080/users/me", {
@@ -88,3 +70,5 @@ async function me() {
     console.error("Error fetching protected data:", error);
   }
 }
+
+*/

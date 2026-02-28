@@ -54,26 +54,42 @@ class Product {
 
 let products = [];
 
+
+//Ajoute un produit au client
 function addProductToPanier() {
+  console.log("addProductToPanier from detail "); 
+
+  const input = document.getElementById("quantity");
+  const quantity = parseInt(input.value);
+
+  if (isNaN(quantity) || quantity < 1) {
+    alert("Quantité invalide");
+    return;
+  }
+
+  console.log("Quantité validée :", quantity);
+ 
+}
+
+function addProductToPanier(id, quantity) {
   getPanierfromLocalStorage();
   //cherche le produit dans le localStorage
   var productInfo = JSON.parse(localStorage.getItem("productInfo"));
 
-  let quantityToAdd = parseInt(document.getElementById("quantity").value);
   // Vérifie si le produit existe déjà dans le panier
   let existingProduct = products.find(
-    (product) => product.id === productInfo.id
+    (product) => id === productInfo.id
   );
   if (existingProduct) {
     // Si le produit existe déjà, augmente la quantité
-    existingProduct.quantite += quantityToAdd;
+    existingProduct.quantite = quantity;
   } else {
     // Sinon, ajoute un nouveau produit
     let productDetail = new Product(
-      productInfo.id,
+      id,
       productInfo.name,
       productInfo.prix,
-      parseInt(document.getElementById("quantity").value),
+      quantity,
       productInfo.pathImage
     );
     products.push(productDetail);
@@ -143,6 +159,7 @@ function getPanierContent() {
       if (currentValue > parseInt(numberInput.min)) {
         numberInput.value = currentValue - 1;
       }
+      addProductToPanier(product.id, numberInput.value);
     });
 
     btnIncrease.addEventListener("click", () => {
@@ -151,6 +168,7 @@ function getPanierContent() {
       if (currentValue < parseInt(numberInput.max)) {
         numberInput.value = currentValue + 1;
       }
+      addProductToPanier(product.id, numberInput.value);
     });
 
     const numberInput = document.createElement("input");
@@ -249,8 +267,6 @@ async function  checkoutStripe(id) {
 }
 
 }
-
-
 
 
 function deleteArticleFromPanier(id) {
