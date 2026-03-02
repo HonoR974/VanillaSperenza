@@ -1,4 +1,5 @@
-let idProduct;
+ let idProduct;
+
 const BASE_URL = "http://localhost:8080";
 
 //affiche les informations du product demandé
@@ -12,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //enregistre l'oid
     idProduct = productData.id;
+   // window.idProduct = idProduct;
+    console.log("id " + idProduct); 
 
     //title
     const title = document.getElementById("titleDetail");
@@ -43,32 +46,82 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+window.addEventListener("load", function() {
 
-//fais une verification du client
-document.addEventListener("DOMContentLoaded", function () {});
+  const btn = document.getElementById("btnDetail");
 
-
-//me test 
-/*
-async function me() {
-  try {
-    const response = await fetch("http://localhost:8080/users/me", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include", // Nécessaire pour envoyer le cookie JWT
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch protected data");
-    }
-
-    const data = await response.json();
-    console.log("Protected data:", data);
-  } catch (error) {
-    console.error("Error fetching protected data:", error);
+  if (!btn) {
+    console.log("Bouton introuvable !");
+    return;
   }
+
+  btn.addEventListener("click", function() {
+    console.log("addEvent  from detail");
+    addProductToPanier(); 
+  
+  });
+
+});
+
+
+
+function addProductToPanier() {
+  console.log("addProductToPanier from detail");
+
+  const input = document.getElementById("quantity");
+
+  if (!input) {
+    console.log("Input quantity introuvable !");
+    return;
+  }
+
+  const quantity = parseInt(input.value);
+
+  if (isNaN(quantity) || quantity < 1) {
+    alert("Quantité invalide");
+    return;
+  }
+
+  console.log("Quantité validée :", quantity);
+  addProductToPanierWithQuantity(quantity); 
 }
 
-*/
+function addProductToPanierWithQuantity( quantity) {
+
+  
+  getPanierfromLocalStorage();
+  //cherche le produit dans le localStorage
+  var productInfo = JSON.parse(localStorage.getItem("productInfo"));
+
+  // Vérifie si le produit existe déjà dans le panier
+  let existingProduct = products.find(
+    (product) => idProduct === productInfo.id
+  );
+  if (existingProduct) {
+    // Si le produit existe déjà, augmente la quantité
+    existingProduct.quantite = quantity;
+  } else {
+    // Sinon, ajoute un nouveau produit
+    let productDetail = new Product(
+      idProduct,
+      productInfo.name,
+      productInfo.prix,
+      quantity,
+      productInfo.pathImage
+    );
+    products.push(productDetail);
+  }
+
+  addPanierToLocalStorage();
+}
+
+
+function addPanierToLocalStorage() {
+
+  localStorage.setItem("panier", JSON.stringify(products));
+}
+
+function getPanierfromLocalStorage() {
+  products = JSON.parse(localStorage.getItem("panier")) || [];
+}
+

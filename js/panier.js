@@ -1,8 +1,7 @@
-window.onload = function () {
-    console.log("appel panier "); 
-    
-};
 
+
+
+console.log(idProduct);
 // Sélection des éléments
 const opentBtnPanier = document.getElementById("panier");
 const closeBtn = document.getElementById("closeSidebar");
@@ -55,48 +54,8 @@ class Product {
 let products = [];
 
 
-//Ajoute un produit au client
-function addProductToPanier() {
-  console.log("addProductToPanier from detail "); 
 
-  const input = document.getElementById("quantity");
-  const quantity = parseInt(input.value);
 
-  if (isNaN(quantity) || quantity < 1) {
-    alert("Quantité invalide");
-    return;
-  }
-
-  console.log("Quantité validée :", quantity);
- 
-}
-
-function addProductToPanier(id, quantity) {
-  getPanierfromLocalStorage();
-  //cherche le produit dans le localStorage
-  var productInfo = JSON.parse(localStorage.getItem("productInfo"));
-
-  // Vérifie si le produit existe déjà dans le panier
-  let existingProduct = products.find(
-    (product) => id === productInfo.id
-  );
-  if (existingProduct) {
-    // Si le produit existe déjà, augmente la quantité
-    existingProduct.quantite = quantity;
-  } else {
-    // Sinon, ajoute un nouveau produit
-    let productDetail = new Product(
-      id,
-      productInfo.name,
-      productInfo.prix,
-      quantity,
-      productInfo.pathImage
-    );
-    products.push(productDetail);
-  }
-
-  addPanierToLocalStorage();
-}
 
 function addPanierToLocalStorage() {
   localStorage.setItem("panier", JSON.stringify(products));
@@ -219,7 +178,7 @@ function getPanierContent() {
   contentPanier.appendChild(btnValidation); 
 }
 
-async function  checkoutStripe(id) {
+async function checkoutStripe(id) {
 
   let existingProduct = products.find(
     (product) => product.id === id
